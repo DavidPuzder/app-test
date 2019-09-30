@@ -41,11 +41,11 @@
 							@click="navigate"
 							class="navbar-item"
 							:class="[isActive && 'navbar-item', isExactActive && 'navbar-item is-active']"
-						>Home</a>
+						>Domov</a>
 					</router-link>
 
 					<router-link
-						to="/about"
+						to="/bookshelf"
 						v-slot="{ href, route, navigate, isActive, isExactActive }"
 					>
 						<a
@@ -53,30 +53,8 @@
 							@click="navigate"
 							class="navbar-item"
 							:class="[isActive && 'navbar-item', isExactActive && 'navbar-item is-active']"
-						>About</a>
+						>Knižnica</a>
 					</router-link>
-
-					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							More
-						</a>
-
-						<div class="navbar-dropdown">
-							<a class="navbar-item">
-								About
-							</a>
-							<a class="navbar-item">
-								Jobs
-							</a>
-							<a class="navbar-item">
-								Contact
-							</a>
-							<hr class="navbar-divider">
-							<a class="navbar-item">
-								Report an issue
-							</a>
-						</div>
-					</div>
 				</div>
 
 				<div class="navbar-end">
@@ -93,10 +71,6 @@
 				</div>
 			</div>
 		</nav>
-		<div id="nav">
-			<router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link>
-		</div>
 		<router-view />
 	</div>
 </template>
@@ -110,15 +84,5 @@
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: #2c3e50;
-}
-#nav {
-	padding: 30px;
-	a {
-		font-weight: bold;
-		color: #2c3e50;
-		&.router-link-exact-active {
-			color: #42b983;
-		}
-	}
 }
 </style>
