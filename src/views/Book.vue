@@ -7,7 +7,7 @@
 						Zobrazenie kníhy
 					</h1>
 					<h2 class="subtitle">
-						{{ book.title}}
+						{{ book.title }}
 					</h2>
 				</div>
 			</div>
@@ -35,9 +35,7 @@
 			<div class="column is-6">
 				<div class="card">
 					<header class="card-header">
-						<p class="card-header-title">
-							Kniha {{ book.title}}
-						</p>
+						<p class="card-header-title">Kniha {{ book.title }}</p>
 						<a
 							href="#"
 							class="card-header-icon"
@@ -63,7 +61,7 @@
 										v-lazy="image.src"
 										style="height: 100px"
 										@click="openGallery(index)"
-									>
+									/>
 								</li>
 							</ul>
 							<LightBox
@@ -82,7 +80,6 @@
 </template>
 
 <script>
-import debounce from "debounce";
 import axios from "axios";
 import VueRouter from "vue-router";
 
@@ -115,7 +112,6 @@ export default {
 						apiKey
 				)
 				.then(response => {
-					console.log(response.data);
 					this.book = response.data.volumeInfo;
 					this.images.push({
 						thumb: response.data.volumeInfo.imageLinks.thumbnail,
@@ -129,7 +125,8 @@ export default {
 		}
 	}
 };
-</script>>
+</script
+>>
 
 <style lang="scss" scoped>
 @import "~vue-image-lightbox/dist/vue-image-lightbox.min.css";
