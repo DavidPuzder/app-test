@@ -25,6 +25,7 @@
 								type="text"
 								placeholder="názov knihy, autor, kategória, rok"
 								v-model="searchInput"
+								@change="getBook(searchInput)"
 							>
 							<span class="icon is-small is-left">
 								<i
@@ -113,17 +114,70 @@
 				>
 					Zobrazovanie výsledkov pre <strong>{{ searchInput }}</strong>
 				</div>
+
+				<div
+					class="card book"
+					v-for="book in books"
+					:key="book.id"
+				>
+					<div class="card-content">
+						<div class="content">
+							<div class="columns">
+								<div class="column is-one-fifth"></div>
+								<div class="column">
+									<div class="title">{{ book.volumeInfo.title}}</div>
+									<div class="subtitle">{{ book.volumeInfo.subtitle}}</div>
+									<div class="authors">
+										<span
+											v-for="author in book.volumeInfo.authors"
+											:key="author"
+										>{{ author }} </span>
+									</div>
+								</div>
+								<div class="column"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import axios from "axios";
+
+let apiKey = "AIzaSyAQ1kNKntSFmSxtFzo7qB-7SqgB50Yd_ok";
+
 export default {
 	data() {
 		return {
-			searchInput: ""
+			searchInput: "",
+			books: []
 		};
+	},
+	methods: {
+		getBook(searchInput) {
+			axios
+				.get(
+					"https://www.googleapis.com/books/v1/volumes?q=" +
+						encodeURI(searchInput) +
+						":keyes&key=" +
+						apiKey
+				)
+				.then(response => (this.books = response.data.items));
+		}
 	}
 };
 </script>>
+
+<style lang="scss" scoped>
+.card {
+	&.book {
+		text-align-last: left;
+		.title {
+			font-size: 1.3em;
+		}
+	}
+}
+</style>
