@@ -7,6 +7,7 @@ import "./registerServiceWorker";
 Vue.config.productionTip = false;
 
 Vue.use(VueLazyLoad);
+
 new Vue({
   router,
   render: h => h(App)
