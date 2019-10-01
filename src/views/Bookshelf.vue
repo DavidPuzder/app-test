@@ -23,13 +23,16 @@
 			</div>
 			<div class="column is-6 is-offset-3">
 				<div class="field">
-					<p class="control is-large has-icons-left has-icons-right">
+					<p
+						class="control is-large has-icons-left has-icons-right"
+						:class=" { 'is-loading':isLoadingSearchInput }"
+					>
 						<input
 							v-model="searchInput"
 							class="input is-large"
 							type="text"
 							placeholder="vyhľadávanie kníh"
-							@change="getBook(searchInput)"
+							v-on:keydown="getBook(searchInput)"
 						>
 						<span class="icon is-small is-left">
 							<i class="material-icons">search</i>
@@ -91,15 +94,17 @@ export default {
 	data() {
 		return {
 			searchInput: "",
-			books: []
+			books: [],
+			isLoadingSearchInput: false
 		};
 	},
 	methods: {
 		getBook(searchInput) {
-			if (searchInput.length < 1) {
+			if (searchInput.length < 3) {
 				this.books = [];
 				return;
 			}
+			this.isLoadingSearchInput = true;
 			axios
 				.get(
 					"https://www.googleapis.com/books/v1/volumes?q=" +
@@ -109,6 +114,7 @@ export default {
 				)
 				.then(response => {
 					this.books = response.data.items;
+					this.isLoadingSearchInput = false;
 				});
 		}
 	},

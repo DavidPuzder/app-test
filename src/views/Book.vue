@@ -109,6 +109,7 @@
 							v-if="!book.description"
 						>
 							<p>Kniha nemá žiaden popis. <br> Pridajte popis kliknutím <a href="#">sem</a></p>
+
 						</div>
 					</div>
 				</div>
